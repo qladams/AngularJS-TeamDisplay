@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Angular Team Display </title>
+    <meta chrset="UTF 8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular-route.min.js"> </script>
+</head>
+<body ng-app="myApp">
+<h1> Washington Teams! </h1>
+<div class="container">
+  <li><a href="#!Redskins"> Washington Redskins </a></li>
+  <li><a href="#!Wizards"> Washington Wizards </a></li>
+  <li><a href="#!Nationals"> Washington Nationals </a></li>
+  <div ng-view></div>
+</div>
+  <script>
+      var myApp = angular.module("myApp", [ 'ngRoute' ]);
+      
+      myApp.config(['$routeProvider', 
+        function($routeProvider) {
+        $routeProvider
+            .when('/Redskins', {
+            templateUrl : '/redskins.html',
+            controller : 'RedskinsController'
+        })
+            .when('/Wizards', {
+            templateUrl : 'wizards.html',
+            controller : 'WizardsController'
+        })
+            .when('/Nationals', {
+            templateUrl : 'Nationals.html',
+            controller : 'NationalsController'
+        })
+        }]);
+      
+      myApp.controller('RedskinsController', function($scope) {
+          $scope.team = [
+              {Player: "Derrius Guice", Position: "Running Back"},
+              {Player: "Colt McCoy", Position: "QuarterBack"},
+              {Player: "Daron Payne", Position: "Nose Tackle"}    
+          ]
+      });
+      
+      myApp.controller('WizardsController', function($scope) {
+          $scope.team = [
+              {Player: "Bradley Beal", Position: "Shooting Guard"},
+              {Player: "John Wall", Position: "Point Guard"},
+              {Player: "Otto Porter", Position: "Small Forward"}    
+          ]
+      });
+      
+      myApp.controller('NationalsController', function($scope) {
+          $scope.team = [
+              {Player: "Juan Soto", Position: "Outfielder"},
+              {Player: "Max Scherzer", Position: "Pitcher"},
+              {Player: "Trea Turner", Position: "Shortstop"}    
+          ]
+      });
+      
+      
+  </script>
+
+</body>
+</html>
+    
